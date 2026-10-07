@@ -1,0 +1,299 @@
+:root {
+  --primary-black: #0d0d0d;
+  --bg-pastel-green: #e2f0d9;
+  --text-dark: #1a1a1a;
+  --text-muted: #737373;
+  --border-color: #d1d5db;
+  --success-bg: #dcfce7;
+  --success-text: #166534;
+  --error-bg: #fee2e2;
+  --error-text: #991b1b;
+  --font-family: 'Inter', -apple-system, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  transition: all 0.25s ease;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: #f3f4f6;
+  color: var(--text-dark);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* Tarjeta Principal */
+.app-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+  max-width: 980px;
+  min-height: 580px;
+  background: #ffffff;
+  border-radius: 28px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+/* Columna Izquierda */
+.left-section {
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.panel {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.panel.active {
+  display: flex;
+}
+
+.brand-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.brand-header h1 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+  letter-spacing: -0.5px;
+}
+
+.brand-header p {
+  color: var(--text-muted);
+  font-size: 0.88rem;
+}
+
+.status-icon {
+  font-size: 44px;
+  color: #10b981;
+  margin-bottom: 12px;
+}
+
+/* Inputs con formato de borde redondeado */
+.input-group {
+  margin-bottom: 14px;
+  position: relative;
+}
+
+.input-group input,
+.input-group select {
+  width: 100%;
+  padding: 13px 45px 13px 20px;
+  border: 1.5px solid var(--border-color);
+  border-radius: 50px;
+  font-size: 0.92rem;
+  outline: none;
+  background-color: #ffffff;
+}
+
+.input-group input:focus,
+.input-group select:focus {
+  border-color: var(--primary-black);
+}
+
+.code-input {
+  text-align: center !important;
+  letter-spacing: 6px;
+  font-weight: 700;
+  font-size: 1.2rem !important;
+  padding-right: 20px !important;
+}
+
+/* Botón del "Ojito" dentro del input */
+.toggle-password {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 4px;
+}
+
+.toggle-password:hover {
+  color: var(--primary-black);
+}
+
+/* Botones principales */
+.btn {
+  width: 100%;
+  padding: 13px;
+  border: none;
+  border-radius: 50px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.btn-primary {
+  background-color: var(--primary-black);
+  color: #ffffff;
+}
+
+.btn-primary:hover {
+  opacity: 0.88;
+}
+
+.btn-danger {
+  background-color: #fee2e2;
+  color: var(--error-text);
+  border: 1px solid #fca5a5;
+  margin-top: 12px;
+}
+
+.btn-danger:hover {
+  background-color: #fecaca;
+}
+
+/* Divisor */
+.divider {
+  display: flex;
+  align-items: center;
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  margin: 20px 0;
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.divider span {
+  padding: 0 12px;
+}
+
+/* Botones sociales circulares */
+.social-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+.btn-social {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background-color: var(--primary-black);
+  color: #ffffff;
+  border: none;
+  font-size: 1.15rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-social:hover {
+  transform: translateY(-2px);
+  opacity: 0.85;
+}
+
+.footer-link {
+  text-align: center;
+  font-size: 0.88rem;
+  margin-top: 20px;
+  color: var(--text-muted);
+}
+
+.footer-link a {
+  color: var(--primary-black);
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Caja de Código QR */
+.qr-box {
+  text-align: center;
+  margin: 12px 0 18px 0;
+}
+
+.qr-box img {
+  width: 140px;
+  height: 140px;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  padding: 6px;
+}
+
+/* Alertas */
+.alert {
+  padding: 11px 16px;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  text-align: center;
+  margin-top: 16px;
+  display: none;
+}
+
+.alert.success {
+  background: var(--success-bg);
+  color: var(--success-text);
+  border: 1px solid #a7f3d0;
+  display: block;
+}
+
+.alert.error {
+  background: var(--error-bg);
+  color: var(--error-text);
+  border: 1px solid #fca5a5;
+  display: block;
+}
+
+/* Columna Derecha Pastel */
+.right-section {
+  background-color: var(--bg-pastel-green);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  text-align: center;
+}
+
+.illustration-box i {
+  font-size: 75px;
+  color: #4a7c59;
+  margin-bottom: 20px;
+}
+
+.right-section h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--primary-black);
+  line-height: 1.35;
+}
+
+@media (max-width: 800px) {
+  .app-container {
+    grid-template-columns: 1fr;
+  }
+  .right-section {
+    display: none;
+  }
+}

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TechStore | Portal de Acceso Seguros</title>
+  
+  <!-- Tipografía e Iconos -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Hoja de Estilos -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <main class="app-container">
+    
+    <!-- COLUMNA IZQUIERDA: Formularios y Flujo de Autenticación -->
+    <section class="left-section">
+      
+      <!-- 1. LOGIN LOCAL -->
+      <div id="login-panel" class="panel active">
+        <div class="brand-header">
+          <h1>¡Bienvenido!</h1>
+          <p>Ingresa tus credenciales de TechStore</p>
+        </div>
+
+        <div class="input-group">
+          <input type="email" id="login-email" placeholder="Correo electrónico" value="usuario@techstore.com">
+        </div>
+
+        <div class="input-group">
+          <input type="password" id="login-password" placeholder="Contraseña" value="Password123!">
+          <button type="button" class="toggle-password" onclick="togglePassword('login-password', this)" title="Mostrar/Ocultar Contraseña">
+            <i class="fa-regular fa-eye-slash"></i>
+          </button>
+        </div>
+
+        <button class="btn btn-primary" onclick="iniciarMFA()">
+          <span>Siguiente</span>
+          <i class="fa-solid fa-arrow-right"></i>
+        </button>
+
+        <div class="divider"><span>o ingresa con</span></div>
+
+        <!-- Botones de ingreso social OAuth -->
+        <div class="social-buttons">
+          <button class="btn-social" onclick="loginSocial('google')" title="Ingresar con Google">
+            <i class="fa-brands fa-google"></i>
+          </button>
+          <button class="btn-social" onclick="loginSocial('github')" title="Ingresar con GitHub">
+            <i class="fa-brands fa-github"></i>
+          </button>
+        </div>
+
+        <div class="footer-link">
+          ¿No tienes cuenta? <a onclick="switchPanel('register-panel')">Regístrate aquí</a>
+        </div>
+      </div>
+
+      <!-- 2. REGISTRO DE USUARIO -->
+      <div id="register-panel" class="panel">
+        <div class="brand-header">
+          <h1>Crear Cuenta</h1>
+          <p>Registra un nuevo usuario en la plataforma</p>
+        </div>
+
+        <div class="input-group">
+          <input type="text" id="reg-nombre" placeholder="Nombre completo">
+        </div>
+
+        <div class="input-group">
+          <input type="email" id="reg-email" placeholder="Correo electrónico">
+        </div>
+
+        <div class="input-group">
+          <input type="password" id="reg-password" placeholder="Contraseña">
+          <button type="button" class="toggle-password" onclick="togglePassword('reg-password', this)" title="Mostrar/Ocultar Contraseña">
+            <i class="fa-regular fa-eye-slash"></i>
+          </button>
+        </div>
+
+        <div class="input-group">
+          <select id="reg-rol">
+            <option value="Gerente">Gerente</option>
+            <option value="Vendedor">Vendedor</option>
+            <option value="Administrador">Administrador</option>
+          </select>
+        </div>
+
+        <button class="btn btn-primary" onclick="registrarUsuario()">
+          <i class="fa-solid fa-user-plus"></i> Registrar Usuario
+        </button>
+
+        <div class="footer-link">
+          ¿Ya tienes cuenta? <a onclick="switchPanel('login-panel')">Volver al inicio</a>
+        </div>
+      </div>
+
+      <!-- 3. VERIFICACIÓN MFA (QR) -->
+      <div id="mfa-panel" class="panel">
+        <div class="brand-header">
+          <h1>Doble Factor (MFA)</h1>
+          <p>Escanea el código QR e ingresa tu código TOTP de 6 dígitos</p>
+        </div>
+
+        <div class="qr-box">
+          <img id="qr-image" src="" alt="Cargando código QR...">
+        </div>
+
+        <div class="input-group">
+          <input type="text" id="totp-code" placeholder="000000" maxlength="6" class="code-input">
+        </div>
+
+        <button class="btn btn-primary" onclick="verificarMFA()">
+          <i class="fa-solid fa-shield-halved"></i> Validar e Ingresar
+        </button>
+        
+        <div class="footer-link">
+          <a onclick="switchPanel('login-panel')">Cancelar</a>
+        </div>
+      </div>
+
+      <!-- 4. DASHBOARD PRIVADO -->
+      <div id="dashboard-panel" class="panel">
+        <div class="brand-header">
+          <i class="fa-solid fa-circle-check status-icon"></i>
+          <h1>Acceso Autorizado</h1>
+          <p id="user-info">Cargando datos del usuario...</p>
+        </div>
+
+        <button class="btn btn-primary" onclick="consultarInventario()">
+          <i class="fa-solid fa-boxes-stacked"></i> Consultar Inventario Protegido
+        </button>
+
+        <button class="btn btn-danger" onclick="cerrarSesion()">
+          <i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesión
+        </button>
+      </div>
+
+      <!-- Caja para Alertas -->
+      <div id="alert-box" class="alert"></div>
+
+    </section>
+
+    <!-- COLUMNA DERECHA: Banner con estilo Verde Pastel -->
+    <section class="right-section">
+      <div class="illustration-box">
+        <i class="fa-solid fa-box-archive"></i>
+      </div>
+      <h2>Gestiona tu inventario<br>de forma <strong>segura</strong> y organizada</h2>
+    </section>
+
+  </main>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
